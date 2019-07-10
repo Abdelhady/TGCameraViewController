@@ -44,6 +44,7 @@ static NSString* const kTGCacheVignetteKey = @"TGCacheVignetteKey";
 @property (strong, nonatomic) IBOutlet TGCameraFilterView *filterView;
 @property (strong, nonatomic) IBOutlet UIButton *defaultFilterButton;
 @property (weak, nonatomic) IBOutlet TGTintedButton *filterWandButton;
+@property (weak, nonatomic) IBOutlet UIButton *zingButton;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topViewHeight;
 
@@ -51,7 +52,11 @@ static NSString* const kTGCacheVignetteKey = @"TGCacheVignetteKey";
 @property (strong, nonatomic) UIView *detailFilterView;
 @property (strong, nonatomic) UIImage *photo;
 @property (strong, nonatomic) NSCache *cachePhoto;
+
 @property (nonatomic) BOOL albumPhoto;
+@property (nonatomic) CGPoint zingButtonInitialLocation;
+@property (nonatomic) CGPoint photoInitialLocation;
+@property (nonatomic) Boolean zinging;
 
 - (IBAction)backTapped;
 - (IBAction)confirmTapped;
@@ -100,7 +105,93 @@ static NSString* const kTGCacheVignetteKey = @"TGCacheVignetteKey";
     }
     
     [self addDetailViewToButton:_defaultFilterButton];
+    _zinging = false;
 }
+
+- (IBAction)confirmButtonDragged:(UIPanGestureRecognizer *)sender {
+    
+    if (sender.state == UIGestureRecognizerStateBegan){
+        _zingButtonInitialLocation = _zingButton.center;
+        _photoInitialLocation = _photoView.center;
+        
+    } else if (sender.state == UIGestureRecognizerStateChanged) {
+        // While dragging the zing button, animate the photo up with half distance
+        if (!_zinging){
+            CGPoint center = sender.view.center;
+            CGPoint translation = [sender translationInView:sender.view];
+            center = CGPointMake(center.x,
+                                 center.y + translation.y);
+            sender.view.center = center;
+            
+            CGFloat totalTranslation = center.y - _zingButtonInitialLocation.y;
+            CGFloat halfTranslation = totalTranslation/2.0;
+        
+            _photoView.center = CGPointMake(_photoInitialLocation.x, (_photoInitialLocation.y + halfTranslation));
+        }
+
+        CGRect buttonFrame = CGRectMake(_zingButton.frame.origin.x, _zingButton.frame.origin.y+10, _zingButton.frame.size.width, _zingButton.frame.size.height);
+        // If the zing button intersected with the photo:
+        // 1. Turn zinging mode on
+        // 2. Animate the photo up
+        // 3. Return the zing button to its original location
+        if (! CGRectIntersectsRect(buttonFrame, _photoView.frame) && !_zinging){
+            _zinging = true;
+            [UIView animateWithDuration:0.6
+                                  delay:0.0
+                                options: UIViewAnimationOptionCurveEaseInOut
+                             animations:^{
+                                 sender.view.center = _zingButtonInitialLocation;
+                                 _photoView.center = CGPointMake(_photoInitialLocation.x, -500);
+                             }
+                             completion:^(BOOL finished){
+                                 [self confirmTapped];
+                             }];
+        }
+
+        [sender setTranslation:CGPointZero inView:sender.view];
+    } else if (sender.state == UIGestureRecognizerStateEnded && !_zinging) {
+        // If dragging ended without touching the photo, animate the button and photo to their initial location
+        [UIView animateWithDuration:0.3
+                              delay:0.0
+             usingSpringWithDamping: 0.3
+              initialSpringVelocity: 10
+                            options: UIViewAnimationOptionCurveEaseInOut
+                         animations:^{
+                             sender.view.center = _zingButtonInitialLocation;
+                             _photoView.center = _photoInitialLocation;
+                         }
+                         completion:^(BOOL finished){ }];
+    }
+}
+
+- (IBAction)photoDragged:(UIPanGestureRecognizer *)sender {
+    if (sender.state == UIGestureRecognizerStateBegan){
+        [self animateZingButton];
+    }
+}
+
+- (IBAction)photoTapped:(UITapGestureRecognizer *)sender {
+     [self animateZingButton];
+}
+
+
+- (void)animateZingButton
+{
+    _zingButtonInitialLocation = _zingButton.center;
+    CGPoint elevated = CGPointMake(_zingButton.center.x, _zingButton.center.y-30);
+    _zingButton.center = elevated;
+    
+    [UIView animateWithDuration:0.5
+                          delay:0.0
+         usingSpringWithDamping: 0.2
+          initialSpringVelocity: 10
+                        options: UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         _zingButton.center = _zingButtonInitialLocation;
+                     }
+                     completion:^(BOOL finished){ }];
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -133,6 +224,21 @@ static NSString* const kTGCacheVignetteKey = @"TGCacheVignetteKey";
 
 - (IBAction)confirmTapped
 {
+    
+    if (!_zinging){
+        [UIView animateWithDuration:0.6
+                              delay:0.0
+                            options: UIViewAnimationOptionCurveEaseInOut
+                         animations:^{
+                             _photoView.center = CGPointMake(_photoView.center.x, -800);
+                         }
+                         completion:^(BOOL finished){
+                             _zinging = true;
+                             [self confirmTapped];
+                         }];
+        return;
+    }
+    
     if ( [_delegate respondsToSelector:@selector(cameraWillTakePhoto)]) {
         [_delegate cameraWillTakePhoto];
     }

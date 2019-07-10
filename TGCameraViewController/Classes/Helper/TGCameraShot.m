@@ -99,7 +99,6 @@
         
         scaledWidth  = width * scaleFactor;
         scaledHeight = height * scaleFactor;
-        
 
         if (widthFactor > heightFactor) {
             thumbnailPoint.y = (targetHeight - scaledHeight) * .5f;
@@ -120,6 +119,8 @@
     [image drawInRect:thumbnailRect];
     newImage = UIGraphicsGetImageFromCurrentImageContext();
     
+    NSLog(@"width = %f, height = %f", newImage.size.width, newImage.size.height);
+
     UIGraphicsEndImageContext();
     
     return newImage;

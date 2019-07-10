@@ -52,6 +52,8 @@
 @property (strong, nonatomic) TGCamera *camera;
 @property (nonatomic) BOOL wasLoaded;
 
+
+
 - (IBAction)closeTapped;
 - (IBAction)gridTapped;
 - (IBAction)flashTapped;
@@ -70,6 +72,8 @@
 
 
 @implementation TGCameraViewController
+
+const int CROP_SIZE = 640;
 
 - (void)viewDidLoad
 {
@@ -249,9 +253,10 @@
     
     UIDeviceOrientation deviceOrientation = [[UIDevice currentDevice] orientation];
     AVCaptureVideoOrientation videoOrientation = [self videoOrientationForDeviceOrientation:deviceOrientation];
-    
+    CGSize cropSize = CGSizeMake(CROP_SIZE, CROP_SIZE);
+    // _captureView.frame.size
     [self viewWillDisappearWithCompletion:^{
-        [_camera takePhotoWithCaptureView:_captureView videoOrientation:videoOrientation cropSize:_captureView.frame.size
+        [_camera takePhotoWithCaptureView:_captureView videoOrientation:videoOrientation cropSize:cropSize
                                completion:^(UIImage *photo) {
                                    TGPhotoViewController *viewController = [TGPhotoViewController newWithDelegate:_delegate photo:photo];
                                    [self.navigationController pushViewController:viewController animated:YES];
