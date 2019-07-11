@@ -1,2 +1,12 @@
-source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '7.0'
+platform :ios, '8.0'
+
+pod 'TGCameraViewController', :path => './', :inhibit_warnings => true
+
+target 'TGCameraViewControllerExample' do
+	
+end
+
+target 'TGCameraViewControllerExampleSwift' do
+	
+end
+

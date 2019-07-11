@@ -6,12 +6,12 @@
   <img src="http://s28.postimg.org/eeli1omct/TGCamera_View_Controller.png" alt="TGCameraViewController" title="TGCameraViewController">
 </p>
 
-Custom camera with AVFoundation. Beautiful, light and easy to integrate with iOS projects.
+Custom camera with AVFoundation. Beautiful, light and easy to integrate with iOS projects. Compatible with Objective-C and Swift.
 
 [![Build Status](https://api.travis-ci.org/tdginternet/TGCameraViewController.png)](https://api.travis-ci.org/tdginternet/TGCameraViewController.png)&nbsp;
 ![License MIT](https://go-shields.herokuapp.com/license-MIT-blue.png)&nbsp;
-[![Cocoapods](http://img.shields.io/cocoapods/v/TGCameraViewController.svg)](http://cocoapods.org/?q=on%3Aios%20tgcameraviewcontroller)&nbsp;
-[![Cocoapods](http://img.shields.io/cocoapods/p/TGCameraViewController.svg)](http://cocoapods.org/?q=on%3Aios%20tgcameraviewcontroller)&nbsp;
+[![Cocoapods](http://img.shields.io/cocoapods/v/TGCameraViewController.svg)](http://cocoapods.org/pods/TGCameraViewController)&nbsp;
+[![Cocoapods](http://img.shields.io/cocoapods/p/TGCameraViewController.svg)](http://cocoapods.org/pods/TGCameraViewController)&nbsp;
 [![Analytics](https://ga-beacon.appspot.com/UA-54929747-1/tdginternet/TGCameraViewController/README.md)](https://github.com/igrigorik/ga-beacon)
 
 * Completely custom camera with AVFoundation
@@ -26,42 +26,51 @@ Custom camera with AVFoundation. Beautiful, light and easy to integrate with iOS
 * Visual effects like Instagram iOS app
 * iPhone, iPod and iPad supported
 
-<em>This library can be applied on devices running iOS 7.0+.</em>
+Requirements: iOS 8 or higher.
 
----
----
-
-### Who use it
+### Who uses it
 
 Find out [who uses TGCameraViewController](https://github.com/tdginternet/TGCameraViewController/wiki/WHO-USES) and add your app to the list.
 
----
----
 
 ### Adding to your project
 
 [CocoaPods](http://cocoapods.org) is the recommended way to add TGCameraViewController to your project.
 
-* Add a pod entry for TGCameraViewController to your Podfile:
+Add a `pod` entry for TGCameraViewController to your Podfile:
 
 ```
 pod 'TGCameraViewController'
 ```
 
-* Install the pod(s) by running:
+Install the pod by running:
 
 ```
 pod install
 ```
 
-<em>Alternatively you can directly download the [latest code version](https://github.com/tdginternet/TGCameraViewController/archive/master.zip) add  drag and drop all files at <strong>TGCameraViewController</strong> folder onto your project.</em>
+Alternatively, you can download the [latest code version](https://github.com/tdginternet/TGCameraViewController/archive/master.zip) directly and import the files to your project.
 
----
----
+#### Privacy (iOS 10)
+
+If you are building your app with iOS 10 or newer, you need to add two privacy keys to your app's Info.plist to allow the usage of the camera and photo library, or your app will crash. 
+
+Add the keys below to the `<dict>` tag of your Info.plist, replacing the strings with the description you want to provide when prompting the user:
+
+```
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Enable Photos access to import photos from your library.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Enable Camera to take photos.</string>
+```
+
 
 ### Usage
 
+Here are some usage examples with Objective-C. You can find example projects for **Objective-C** and **Swift 3** cloning the project. Refer to version 2.2.5 if you need a Swift 2.3 example.
+
 #### Take photo
+
 
 ```obj-c
 #import "TGCameraViewController.h"
@@ -222,12 +231,10 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 @end
 ```
 
----
----
 
 ### Requirements
 
-TGCameraViewController works on iOS 7.0+ version and is compatible with ARC projects. It depends on the following Apple frameworks, which should already be included with most Xcode templates:
+TGCameraViewController works on iOS 8.0+ version and is compatible with ARC projects. It depends on the following Apple frameworks, which should already be included with most Xcode templates:
 
 * AssetsLibrary.framework
 * AVFoundation.framework
@@ -238,10 +245,9 @@ TGCameraViewController works on iOS 7.0+ version and is compatible with ARC proj
 
 You will need LLVM 3.0 or later in order to build TGCameraViewController.
 
----
----
 
-### Todo
+
+### To do
 
 * Landscape mode support
 * Zoom
@@ -250,16 +256,14 @@ You will need LLVM 3.0 or later in order to build TGCameraViewController.
 * Create a custom picker controller
 * Zoom does not work with the camera roll pictures
 
----
----
+
 
 ### License
 
 This code is distributed under the terms and conditions of the [MIT license](LICENSE).
 
----
----
 
-### Change-log
+
+### Change log
 
 A brief summary of each TGCameraViewController release can be found on the [releases](https://github.com/tdginternet/TGCameraViewController/releases).

@@ -33,8 +33,6 @@
 
 NSMutableDictionary *optionDictionary;
 
-
-
 @interface TGCamera ()
 
 @property (strong, nonatomic) AVCaptureSession *session;
@@ -56,16 +54,18 @@ NSMutableDictionary *optionDictionary;
 + (instancetype)cameraWithFlashButton:(UIButton *)flashButton
 {
     TGCamera *camera = [TGCamera newCamera];
+#if !TARGET_IPHONE_SIMULATOR
     [camera setupWithFlashButton:flashButton];
-    
+#endif
     return camera;
 }
 
 + (instancetype)cameraWithFlashButton:(UIButton *)flashButton devicePosition:(AVCaptureDevicePosition)devicePosition
 {
     TGCamera *camera = [TGCamera newCamera];
+#if !TARGET_IPHONE_SIMULATOR
     [camera setupWithFlashButton:flashButton devicePosition:devicePosition];
-    
+#endif
     return camera;
 }
 
@@ -92,14 +92,6 @@ NSMutableDictionary *optionDictionary;
     }
     
     return nil;
-}
-
-- (void)dealloc
-{
-    _session = nil;
-    _previewLayer = nil;
-    _stillImageOutput = nil;
-    _gridView = nil;
 }
 
 #pragma mark -
@@ -186,17 +178,11 @@ NSMutableDictionary *optionDictionary;
 
 - (void)setupWithFlashButton:(UIButton *)flashButton
 {
-    //
     // create session
-    //
-    
     _session = [AVCaptureSession new];
     _session.sessionPreset = AVCaptureSessionPresetPhoto;
     
-    //
     // setup device
-    //
-    
     AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
     
     if ([device lockForConfiguration:nil]) {
@@ -217,17 +203,11 @@ NSMutableDictionary *optionDictionary;
         [device unlockForConfiguration];
     }
 
-    //
     // add device input to session
-    //
-    
     AVCaptureDeviceInput *deviceInput = [AVCaptureDeviceInput deviceInputWithDevice:device error:nil];
     [_session addInput:deviceInput];
     
-    //
     // add output to session
-    //
-    
     NSDictionary *outputSettings = [NSDictionary dictionaryWithObjectsAndKeys:AVVideoCodecJPEG, AVVideoCodecKey, nil];
     
     _stillImageOutput = [AVCaptureStillImageOutput new];
@@ -235,26 +215,17 @@ NSMutableDictionary *optionDictionary;
     
     [_session addOutput:_stillImageOutput];
     
-    //
     // setup flash button
-    //
-    
     [TGCameraFlash flashModeWithCaptureSession:_session andButton:flashButton];
 }
 
 - (void)setupWithFlashButton:(UIButton *)flashButton devicePosition:(AVCaptureDevicePosition)devicePosition
 {
-    //
     // create session
-    //
-    
     _session = [AVCaptureSession new];
     _session.sessionPreset = AVCaptureSessionPresetPhoto;
     
-    //
     // setup device
-    //
-    
     NSArray *devices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
     AVCaptureDevice *device;
     for (AVCaptureDevice *aDevice in devices) {
@@ -284,17 +255,11 @@ NSMutableDictionary *optionDictionary;
         [device unlockForConfiguration];
     }
     
-    //
     // add device input to session
-    //
-    
 //    AVCaptureDeviceInput *deviceInput = [AVCaptureDeviceInput deviceInputWithDevice:device error:nil];
 //    [_session addInput:deviceInput];
     
-    //
     // add output to session
-    //
-    
     NSDictionary *outputSettings = [NSDictionary dictionaryWithObjectsAndKeys:AVVideoCodecJPEG, AVVideoCodecKey, nil];
     
     _stillImageOutput = [AVCaptureStillImageOutput new];
@@ -302,10 +267,7 @@ NSMutableDictionary *optionDictionary;
     
     [_session addOutput:_stillImageOutput];
     
-    //
     // setup flash button
-    //
-    
     [TGCameraFlash flashModeWithCaptureSession:_session andButton:flashButton];
 }
 

@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
-        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+	<deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+	<capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <array key="HelveticaNeueLights.ttc">
@@ -17,6 +14,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TGPhotoViewController">
             <connections>
                 <outlet property="bottomView" destination="Wwe-hD-eWO" id="phi-0I-kq7"/>
+                <outlet property="cancelButton" destination="WAy-eH-OU9" id="KT6-UM-qp5"/>
+                <outlet property="confirmButton" destination="pc5-8R-lAJ" id="q8l-oT-qHT"/>
                 <outlet property="defaultFilterButton" destination="9jP-uX-c4U" id="AEq-cV-Ah8"/>
                 <outlet property="filterView" destination="mfq-V7-07J" id="Pf2-0x-IU7"/>
                 <outlet property="filterWandButton" destination="bwi-ED-cl6" id="g4M-yf-0ho"/>
