@@ -104,7 +104,7 @@ static NSString* const kTGCacheVignetteKey = @"TGCacheVignetteKey";
     
     NSBundle *bundle = [NSBundle bundleForClass:self.class];
     [_cancelButton setImage:[UIImage imageNamed:@"CameraBack" inBundle:bundle compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
-    [_confirmButton setImage:[UIImage imageNamed:@"CameraShot" inBundle:bundle compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
+    [_confirmButton setImage:[UIImage imageNamed:@"CameraZing" inBundle:bundle compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
     [_filterWandButton setImage:[UIImage imageNamed:@"CameraFilter" inBundle:bundle compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
 
     if ([[TGCamera getOption:kTGCameraOptionHiddenFilterButton] boolValue] == YES) {
