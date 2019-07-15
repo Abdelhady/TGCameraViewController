@@ -131,7 +131,7 @@ static NSString* const kTGCacheVignetteKey = @"TGCacheVignetteKey";
             sender.view.center = center;
             
             CGFloat totalTranslation = center.y - _zingButtonInitialLocation.y;
-            CGFloat halfTranslation = totalTranslation/2.0;
+            CGFloat halfTranslation = totalTranslation/5.0;// Changing from `2.0` to `5.0` for a quicker responsive zinging
         
             _photoView.center = CGPointMake(_photoInitialLocation.x, (_photoInitialLocation.y + halfTranslation));
         }
