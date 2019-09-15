@@ -2,18 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "CameraFlashAuto.png"
-    },
-    {
-      "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "CameraFlashAuto@2x.png"
-    },
-    {
-      "idiom" : "universal",
-      "scale" : "3x",
-      "filename" : "CameraFlashAuto@3x.png"
+      "filename" : "auto.pdf"
     }
   ],
   "info" : {

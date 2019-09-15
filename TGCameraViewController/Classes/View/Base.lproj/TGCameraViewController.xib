@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
-	<capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TGCameraViewController">
@@ -157,7 +159,8 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.29803921570000003" green="0.31372549020000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="p7O-pE-Mp0" firstAttribute="leading" secondItem="WJG-N5-BnZ" secondAttribute="trailing" constant="63" id="1q8-DG-v1g"/>
                         <constraint firstItem="WJG-N5-BnZ" firstAttribute="leading" secondItem="Nol-dD-ETh" secondAttribute="trailing" constant="63" id="41d-NA-H1H"/>
@@ -184,11 +187,17 @@
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wtQ-Dg-G3i" userLabel="Shot">
                             <rect key="frame" x="261" y="16" width="78" height="78"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="78" id="HAC-kq-tli"/>
                                 <constraint firstAttribute="height" constant="78" id="Hud-wO-9uR"/>
                             </constraints>
-                            <state key="normal" image="CameraShot"/>
+                            <color key="tintColor" red="0.97647058819999999" green="0.43921568630000002" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="39"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="shotTapped" destination="-1" eventType="touchUpInside" id="XqW-0H-DD4"/>
                             </connections>
@@ -205,7 +214,8 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" red="0.078431372549019607" green="0.078431372549019607" blue="0.078431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.4431372549" green="0.46666666670000001" blue="0.50196078430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="centerY" secondItem="wtQ-Dg-G3i" secondAttribute="centerY" id="02I-TO-eyD"/>
                         <constraint firstAttribute="centerY" secondItem="O3k-MF-E1l" secondAttribute="centerY" id="AlZ-MU-XJk"/>
@@ -292,10 +302,9 @@
     <resources>
         <image name="CameraClose" width="26" height="26"/>
         <image name="CameraDetail" width="58.5" height="58.5"/>
-        <image name="CameraFlashAuto" width="41" height="41"/>
+        <image name="CameraFlashAuto" width="15" height="25"/>
         <image name="CameraGrid" width="26" height="26"/>
         <image name="CameraRoll" width="26" height="26"/>
-        <image name="CameraShot" width="78" height="78"/>
-        <image name="CameraToggle" width="26" height="26"/>
+        <image name="CameraToggle" width="31" height="26"/>
     </resources>
 </document>
