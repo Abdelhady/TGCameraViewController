@@ -102,6 +102,8 @@ static NSString* const kTGCacheVignetteKey = @"TGCacheVignetteKey";
     _photoView.clipsToBounds = YES;
     _photoView.image = _photo;
     
+    [TGCameraColor setTintColor: [UIColor whiteColor]];
+    
     NSBundle *bundle = [NSBundle bundleForClass:self.class];
     [_cancelButton setImage:[UIImage imageNamed:@"CameraBack" inBundle:bundle compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
     [_confirmButton setImage:[UIImage imageNamed:@"CameraZing" inBundle:bundle compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
